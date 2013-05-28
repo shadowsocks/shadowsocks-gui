@@ -21,10 +21,11 @@
 gui = require 'nw.gui'
 # hack util.log
 util = require 'util'
+divWarning = $('#divWarning')
 util.log = (s) ->
   console.log new Date().toLocaleString() + " - #{s}"
-  $('#divWarning').show()
-  $('#divWarning').text(s)
+  divWarning.show()
+  divWarning.text(s)
 local = require('./shadowsocks-nodejs/local')
   
 saveChanges = ->
