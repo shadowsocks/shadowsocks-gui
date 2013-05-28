@@ -57,7 +57,7 @@
 
         if (window.local == null) {
           try {
-            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, config.timeout || 600);
+            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout || 600));
           } catch (_error) {
             e = _error;
             alert(e);
