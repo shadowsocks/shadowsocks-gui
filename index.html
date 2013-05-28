@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>shadowsocks</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
+    <style>
+        body {
+            margin: 10px;
+        }
+    </style>
+    <script src="jquery-1.9.0.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+</head>
+<body>
+<div id="divError" class="alert alert-error hide">
+    Please fill in the blanks and click Save.
+</div>
+<div class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="inputServerIP">Server IP</label>
+        <div class="controls">
+            <input type="text" id="inputServerIP" data-key="server"  placeholder="Server IP">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputServerPort">Server Port</label>
+        <div class="controls">
+            <input type="text" id="inputServerPort" data-key="server_port" placeholder="Server Port">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputPassword">Password</label>
+        <div class="controls">
+            <input type="text" id="inputPassword" data-key="password" placeholder="Password">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputLocalPort">Local Port</label>
+        <div class="controls">
+            <input type="text" id="inputLocalPort" data-key="local_port" placeholder="Local Port">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button id="buttonSave" class="btn btn-primary">Save</button>
+            <button id="buttonConsole" class="btn">Show Console</button>
+        </div>       
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

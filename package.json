@@ -1,0 +1,21 @@
+{
+    "name": "shadowsocks",
+    "main": "index.html",
+    "description": "shadowsocks client with GUI",
+    "version": "0.1.0",
+    "keywords": [ "shadowsocks", "node-webkit" ],
+    "window": {
+      "icon": "link.png",
+      "toolbar": false,
+      "width": 500,
+      "height": 300,
+      "position": "mouse",
+      "min_width": 300,
+      "min_height": 200,
+      "max_width": 800,
+      "max_height": 600
+    },
+    "webkit": {
+      "plugin": true
+    }
+}
