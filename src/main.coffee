@@ -23,32 +23,40 @@ gui = require 'nw.gui'
 util = require 'util'
 util.log = (s) ->
   console.log new Date().toLocaleString() + " - #{s}"
+  $('#divWarning').show()
+  $('#divWarning').text(s)
 local = require('./shadowsocks-nodejs/local')
   
 saveChanges = ->
   config = {}
-  $('input').each ->
+  $('input,select').each ->
     key = $(this).attr('data-key')
-    config[key] = this.value
-    window.localStorage.setItem(key, this.value)
-  console.log('config saved.');
+    val = $(this).val()
+    config[key] = val
+    window.localStorage.setItem(key, val)
+  util.log 'config saved'
   restartServer(config)
   false
 
 load = ->
   config = {}
-  $('input').each ->
+  $('input,select').each ->
     key = $(this).attr('data-key')
-    this.value = window.localStorage.getItem(key) or ''
+    val = window.localStorage.getItem(key) or ''
+    if val
+      $(this).val(val)
     config[key] = this.value
   restartServer(config)
 
 restartServer = (config)->
-  if config.server and +config.server_port and config.password and +config.local_port
+  if config.server and +config.server_port and config.password and +config.local_port and config.method and +config.timeout
     start = ->
       if not window.local?
-        window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, null, 600)
-      $('#divError').hide()
+        try
+          window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, config.timeout or 600)
+        catch e
+          alert e
+      $('#divError').fadeOut()
     if window.local?
       try
         window.local.close(->
@@ -57,10 +65,12 @@ restartServer = (config)->
         )
       catch e
         util.log e
+        window.local = null
+        start()
     else
       start()
   else
-    $('#divError').show()
+    $('#divError').fadeIn()
 
 $('#buttonSave').on('click', saveChanges)
 $('#buttonConsole').on('click', ->

@@ -7,7 +7,9 @@
   util = require('util');
 
   util.log = function(s) {
-    return console.log(new Date().toLocaleString() + (" - " + s));
+    console.log(new Date().toLocaleString() + (" - " + s));
+    $('#divWarning').show();
+    return $('#divWarning').text(s);
   };
 
   local = require('./shadowsocks-nodejs/local');
@@ -16,14 +18,15 @@
     var config;
 
     config = {};
-    $('input').each(function() {
-      var key;
+    $('input,select').each(function() {
+      var key, val;
 
       key = $(this).attr('data-key');
-      config[key] = this.value;
-      return window.localStorage.setItem(key, this.value);
+      val = $(this).val();
+      config[key] = val;
+      return window.localStorage.setItem(key, val);
     });
-    console.log('config saved.');
+    util.log('config saved');
     restartServer(config);
     return false;
   };
@@ -32,11 +35,14 @@
     var config;
 
     config = {};
-    $('input').each(function() {
-      var key;
+    $('input,select').each(function() {
+      var key, val;
 
       key = $(this).attr('data-key');
-      this.value = window.localStorage.getItem(key) || '';
+      val = window.localStorage.getItem(key) || '';
+      if (val) {
+        $(this).val(val);
+      }
       return config[key] = this.value;
     });
     return restartServer(config);
@@ -45,12 +51,19 @@
   restartServer = function(config) {
     var e, start;
 
-    if (config.server && +config.server_port && config.password && +config.local_port) {
+    if (config.server && +config.server_port && config.password && +config.local_port && config.method && +config.timeout) {
       start = function() {
+        var e;
+
         if (window.local == null) {
-          window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, null, 600);
+          try {
+            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, config.timeout || 600);
+          } catch (_error) {
+            e = _error;
+            alert(e);
+          }
         }
-        return $('#divError').hide();
+        return $('#divError').fadeOut();
       };
       if (window.local != null) {
         try {
@@ -60,13 +73,15 @@
           });
         } catch (_error) {
           e = _error;
-          return util.log(e);
+          util.log(e);
+          window.local = null;
+          return start();
         }
       } else {
         return start();
       }
     } else {
-      return $('#divError').show();
+      return $('#divError').fadeIn();
     }
   };
 

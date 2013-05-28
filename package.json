@@ -8,12 +8,12 @@
       "icon": "link.png",
       "toolbar": false,
       "width": 500,
-      "height": 300,
+      "height": 450,
       "position": "mouse",
-      "min_width": 300,
-      "min_height": 200,
-      "max_width": 800,
-      "max_height": 600
+      "min_width": 500,
+      "min_height": 450,
+      "max_width": 500,
+      "max_height": 450
     },
     "webkit": {
       "plugin": true

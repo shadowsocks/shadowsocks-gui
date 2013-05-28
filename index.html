@@ -15,6 +15,8 @@
 <div id="divError" class="alert alert-error hide">
     Please fill in the blanks and click Save.
 </div>
+<div id="divWarning" class="alert alert-info hide">
+</div>
 <div class="form-horizontal">
     <div class="control-group">
         <label class="control-label" for="inputServerIP">Server IP</label>
@@ -37,7 +39,26 @@
     <div class="control-group">
         <label class="control-label" for="inputLocalPort">Local Port</label>
         <div class="controls">
-            <input type="text" id="inputLocalPort" data-key="local_port" placeholder="Local Port">
+            <input type="text" id="inputLocalPort" data-key="local_port" placeholder="Local Port" value="1080">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="selectMethod">Encryption Method</label>
+        <div class="controls">
+            <select id="selectMethod" data-key="method">
+                <option value="table" selected>Table(Default)</option>
+                <option value="bf-cfb">Blowfish-cfb</option>
+                <option value="aes-256-cfb">AES-256-cfb</option>
+                <option value="aes-192-cfb">AES-192-cfb</option>
+                <option value="aes-128-cfb">AES-128-cfb</option>
+                <option value="rc4">RC4</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputTimeout">Timeout in Second</label>
+        <div class="controls">
+            <input type="number" id="inputTimeout" data-key="timeout" placeholder="Timeout" value="600" min=10>
         </div>
     </div>
     <div class="control-group">
