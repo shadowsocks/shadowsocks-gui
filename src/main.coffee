@@ -22,12 +22,13 @@ gui = require 'nw.gui'
 # hack util.log
 util = require 'util'
 divWarning = $('#divWarning')
+divWarningShown = false
 util.log = (s) ->
   console.log new Date().toLocaleString() + " - #{s}"
-  divWarning.show()
+  if not divWarningShown
+    divWarning.show()
+    divWarningShown = true
   divWarning.text(s)
-  
-util.log require('./shadowsocks-nodejs/args').version
 
 local = require('./shadowsocks-nodejs/local')
 
@@ -63,6 +64,7 @@ restartServer = (config) ->
     start = ->
       try
         isRestarting = false
+        util.log require('./shadowsocks-nodejs/args').version
         window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout or 600)
         $('#divError').fadeOut()
       catch e
