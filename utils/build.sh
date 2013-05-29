@@ -2,10 +2,10 @@ if [ $# == 0 ]; then
   echo 'usage: build.sh version'
   exit 1
 fi
-cd `dirname $0`
+pushd `dirname $0`
 cd ..
 mkdir -p dist && \
-pushd dist || \
+cd dist || \
 exit 1
 for platform in osx-ia32 win-ia32 linux-ia32 linux-x64
 do
