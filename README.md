@@ -5,6 +5,8 @@ node-webkit GUI for shadowsocks
 
 OSX / Windows / Linux
 
+![Screenshot](http://ww1.sinaimg.cn/large/4a7494e9jw1e55jz443cuj20h20gadgu.jpg)
+
 Download all-in-one
 --------------------
 
@@ -21,4 +23,6 @@ Then copy unzipped files into shadowsocks-gui directory. Then run nw.exe / node-
 
 See also: https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps
 
-
+License
+--------
+MIT License
