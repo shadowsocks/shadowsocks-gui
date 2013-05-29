@@ -4,8 +4,9 @@
     "description": "shadowsocks client with GUI",
     "version": "0.1.0",
     "keywords": [ "shadowsocks", "node-webkit" ],
+    "single-instance": false,
     "window": {
-      "icon": "link.png",
+      "icon": "icon.png",
       "toolbar": false,
       "width": 500,
       "height": 450,
@@ -15,7 +16,10 @@
       "max_width": 500,
       "max_height": 450
     },
-    "webkit": {
-      "plugin": true
+    "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
     }
+    ]
 }
