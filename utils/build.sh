@@ -9,7 +9,7 @@ cd dist || \
 exit 1
 for platform in osx-ia32 win-ia32 linux-ia32 linux-x64
 do
-  if [ -f shadowsocks-gui-$1-$platform.tar.gz ]; then
+  if [ -f shadowsocks-gui-$1-$platform.7z ]; then
     continue
   fi
   if [ ! -f node-webkit-v0.5.1-$platform.zip ] ; then
@@ -40,8 +40,10 @@ do
   rm -r shadowsocks-nodejs/.git* && \
   popd && \
   tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
+  7z a -t7z shadowsocks-gui-$1-$platform.7z shadowsocks-gui-$1-$platform && \
   rm -r shadowsocks-gui-$1-$platform && \
-  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz && \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.7z frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.7z || \
   exit 1
 done
 popd
