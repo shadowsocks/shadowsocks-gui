@@ -32,6 +32,21 @@ util.log = (s) ->
 
 local = require('./shadowsocks-nodejs/local')
 
+serverHistory = ->
+  localStorage['server_history'].split('|')
+  
+addServer = (serverIP) ->
+  servers = localStorage['server_history'].split('|')
+  servers.push serverIP
+  newServers = []
+  for server in servers
+    if server and server not in newServers
+      newServers.push server
+  localStorage['server_history'] = newServers.join '|'
+
+$('#inputServerIP').typeahead
+  source: serverHistory
+
 saveChanges = ->
   config = {}
   $('input,select').each ->
@@ -66,6 +81,7 @@ restartServer = (config) ->
         isRestarting = false
         util.log require('./shadowsocks-nodejs/args').version
         window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout or 600)
+        addServer config.server
         $('#divError').fadeOut()
       catch e
         util.log e
