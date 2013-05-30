@@ -26,3 +26,8 @@ See also: https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps
 License
 --------
 MIT License
+
+Server and other clients
+---------
+
+Server and other clients can be found [here](https://github.com/clowwindy/shadowsocks/wiki/Ports-and-Clients).
