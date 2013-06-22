@@ -15,8 +15,10 @@ cp ../../*.json . && \
 cp ../../*.htm* . && \
 cp ../../*.png . && \
 cp -r ../../shadowsocks-nodejs . && \
-rm -r shadowsocks-nodejs/.git* && \
-zip -r ../app.nw *
+rm -r shadowsocks-nodejs/.git* || \
+exit 1
+rm ../app.nw
+zip -r ../app.nw * && \
 popd && \
 rm -rf app || \
 exit 1
@@ -45,21 +47,23 @@ do
     exit 1
   fi
   if [ $platform == win-ia32 ]; then
-      cat nw.exe ../app.nw > shadowsocks.exe
-      rm nw.exe
+      cat nw.exe ../app.nw > shadowsocks.exe && \
+      rm nw.exe || \
+      exit 1
   fi
   if [ $platform == osx-ia32 ]; then
-      cp ../app.nw node-webkit.app/Contents/Resources/
-      cp ../../utils/Info.plist node-webkit.app/Contents/
-      cp ../../utils/*.icns node-webkit.app/Contents/Resources/
-      /usr/libexec/PlistBuddy -c "Set CFBundleVersion $1" Info.plist 
-      /usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $1" Info.plist 
-      mv node-webkit.app shadowsocks.app
+      cp ../app.nw node-webkit.app/Contents/Resources/ && \
+      cp ../../utils/Info.plist node-webkit.app/Contents/ && \
+      cp ../../utils/*.icns node-webkit.app/Contents/Resources/ && \
+      /usr/libexec/PlistBuddy -c "Set CFBundleVersion $1" node-webkit.app/Contents/Info.plist  && \
+      /usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $1" node-webkit.app/Contents/Info.plist  && \
+      mv node-webkit.app shadowsocks.app || \
+      exit 1
   fi
-  popd
-  # tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
-  # rm -r shadowsocks-gui-$1-$platform && \
-  # rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
-  # exit 1
+  popd && \
+  tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
+  rm -r shadowsocks-gui-$1-$platform && \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
+  exit 1
 done
 popd
