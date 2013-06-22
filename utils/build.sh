@@ -16,9 +16,9 @@ do
   if [ ! -f node-webkit-$NW_VERSION-$platform.zip ] ; then
     if [ ! -f node-webkit-$NW_VERSION-$platform.tar.gz ] ; then
       axel https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip || \
-      wget https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip || \
+      curl https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip > node-webkit-$NW_VERSION-$platform.zip || \
       axel https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz || \
-      wget https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz || \
+      curl https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz > node-webkit-$NW_VERSION-$platform.tar.gz || \
       exit 1
     fi
   fi
@@ -41,10 +41,10 @@ do
   rm -r shadowsocks-nodejs/.git* && \
   popd && \
   tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
-  7z a -t7z shadowsocks-gui-$1-$platform.7z shadowsocks-gui-$1-$platform && \
+#  7z a -t7z shadowsocks-gui-$1-$platform.7z shadowsocks-gui-$1-$platform && \
   rm -r shadowsocks-gui-$1-$platform && \
-  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz && \
-  rsync --progress -e ssh shadowsocks-gui-$1-$platform.7z frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.7z || \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
+#  rsync --progress -e ssh shadowsocks-gui-$1-$platform.7z frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.7z || \
   exit 1
 done
 popd
