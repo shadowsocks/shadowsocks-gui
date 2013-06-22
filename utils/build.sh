@@ -1,3 +1,4 @@
+NW_VERSION=v0.6.0
 if [ $# == 0 ]; then
   echo 'usage: build.sh version'
   exit 1
@@ -12,23 +13,23 @@ do
   if [ -f shadowsocks-gui-$1-$platform.7z ]; then
     continue
   fi
-  if [ ! -f node-webkit-v0.5.1-$platform.zip ] ; then
-    if [ ! -f node-webkit-v0.5.1-$platform.tar.gz ] ; then
-      axel https://s3.amazonaws.com/node-webkit/v0.5.1/node-webkit-v0.5.1-$platform.zip || \
-      wget https://s3.amazonaws.com/node-webkit/v0.5.1/node-webkit-v0.5.1-$platform.zip || \
-      axel https://s3.amazonaws.com/node-webkit/v0.5.1/node-webkit-v0.5.1-$platform.tar.gz || \
-      wget https://s3.amazonaws.com/node-webkit/v0.5.1/node-webkit-v0.5.1-$platform.tar.gz || \
+  if [ ! -f node-webkit-$NW_VERSION-$platform.zip ] ; then
+    if [ ! -f node-webkit-$NW_VERSION-$platform.tar.gz ] ; then
+      axel https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip || \
+      wget https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip || \
+      axel https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz || \
+      wget https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz || \
       exit 1
     fi
   fi
   mkdir shadowsocks-gui-$1-$platform && \
   pushd shadowsocks-gui-$1-$platform && \
-  unzip ../node-webkit-v0.5.1-$platform.zip || \
-  tar xf ../node-webkit-v0.5.1-$platform.tar.gz || \
+  unzip ../node-webkit-$NW_VERSION-$platform.zip || \
+  tar xf ../node-webkit-$NW_VERSION-$platform.tar.gz || \
   exit 1
-  if [ -d node-webkit-v0.5.1-$platform ]; then
-    mv node-webkit-v0.5.1-$platform/* ./ && \
-    rm -r node-webkit-v0.5.1-$platform || \
+  if [ -d node-webkit-$NW_VERSION-$platform ]; then
+    mv node-webkit-$NW_VERSION-$platform/* ./ && \
+    rm -r node-webkit-$NW_VERSION-$platform || \
     exit 1
   fi
   cp ../../*.js . && \
