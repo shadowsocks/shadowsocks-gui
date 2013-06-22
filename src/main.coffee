@@ -33,10 +33,10 @@ util.log = (s) ->
 local = require('./shadowsocks-nodejs/local')
 
 serverHistory = ->
-  localStorage['server_history'].split('|')
+  (localStorage['server_history'] || '').split('|')
   
 addServer = (serverIP) ->
-  servers = localStorage['server_history'].split('|')
+  servers = (localStorage['server_history'] || '').split('|')
   servers.push serverIP
   newServers = []
   for server in servers
@@ -83,6 +83,7 @@ restartServer = (config) ->
         window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout or 600)
         addServer config.server
         $('#divError').fadeOut()
+        gui.Window.get().minimize()
       catch e
         util.log e
     if window.local?
@@ -103,6 +104,9 @@ $('#buttonConsole').on 'click', ->
 
 tray = new gui.Tray icon: 'menu_icon.png'
 menu = new gui.Menu()
+
+tray.on 'click', ->
+  gui.Window.get().show()
 
 show = new gui.MenuItem
   type: 'normal'

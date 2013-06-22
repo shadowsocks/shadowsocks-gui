@@ -23,12 +23,12 @@
   local = require('./shadowsocks-nodejs/local');
 
   serverHistory = function() {
-    return localStorage['server_history'].split('|');
+    return (localStorage['server_history'] || '').split('|');
   };
 
   addServer = function(serverIP) {
     var newServers, server, servers, _i, _len;
-    servers = localStorage['server_history'].split('|');
+    servers = (localStorage['server_history'] || '').split('|');
     servers.push(serverIP);
     newServers = [];
     for (_i = 0, _len = servers.length; _i < _len; _i++) {
@@ -91,7 +91,8 @@
           util.log(require('./shadowsocks-nodejs/utils').version);
           window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout || 600));
           addServer(config.server);
-          return $('#divError').fadeOut();
+          $('#divError').fadeOut();
+          return gui.Window.get().minimize();
         } catch (_error) {
           e = _error;
           return util.log(e);
@@ -126,6 +127,10 @@
   });
 
   menu = new gui.Menu();
+
+  tray.on('click', function() {
+    return gui.Window.get().show();
+  });
 
   show = new gui.MenuItem({
     type: 'normal',
