@@ -37,3 +37,10 @@ Server and other clients
 ---------
 
 Server and other clients can be found [here](https://github.com/clowwindy/shadowsocks/wiki/Ports-and-Clients).
+
+
+Bugs and Issues
+----------------
+Please visit [issue tracker](https://github.com/shadowsocks/shadowsocks-gui/issues?state=open)
+
+Mailing list: http://groups.google.com/group/shadowsocks
