@@ -1,3 +1,0 @@
-[submodule "shadowsocks-nodejs"]
-	path = shadowsocks-nodejs
-	url = https://github.com/clowwindy/shadowsocks-nodejs.git
