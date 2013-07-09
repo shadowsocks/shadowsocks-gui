@@ -17,11 +17,11 @@ This files are so large that I recommend you to download node-webkit yourself, t
 Download node-webkit and shadowsocks-gui seperately
 -----------------------------------------------------
 
-Clone the repo. Then init submodules:
+Clone the repo and install dependencies:
 
     git clone https://github.com/shadowsocks/shadowsocks-gui.git
     cd shadowsocks-gui
-    git submodule update --init
+    npm install
 
 Download [node-webkit](https://github.com/rogerwang/node-webkit#downloads)
 

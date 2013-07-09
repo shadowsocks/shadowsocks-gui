@@ -20,7 +20,7 @@
     return divWarning.text(s);
   };
 
-  local = require('./shadowsocks-nodejs/local');
+  local = require('shadowsocks');
 
   serverHistory = function() {
     return (localStorage['server_history'] || '').split('|');
@@ -88,7 +88,6 @@
         var e;
         try {
           isRestarting = false;
-          util.log(require('./shadowsocks-nodejs/utils').version);
           window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout || 600));
           addServer(config.server);
           $('#divError').fadeOut();

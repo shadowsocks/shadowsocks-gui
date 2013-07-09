@@ -14,8 +14,7 @@ cp ../../*.css . && \
 cp ../../*.json . && \
 cp ../../*.htm* . && \
 cp ../../*.png . && \
-cp -r ../../shadowsocks-nodejs . && \
-rm -r shadowsocks-nodejs/.git* || \
+cp -r node_modules . || \
 exit 1
 rm ../app.nw
 zip -r ../app.nw * && \
