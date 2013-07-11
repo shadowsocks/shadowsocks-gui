@@ -11,6 +11,8 @@ mkdir app && \
 pushd app && \
 cp ../../*.js . && \
 cp ../../*.css . && \
+cp -r ../../css . && \
+cp -r ../../img . && \
 cp ../../*.json . && \
 cp ../../*.htm* . && \
 cp ../../*.png . && \
