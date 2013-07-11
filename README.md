@@ -5,17 +5,19 @@ node-webkit GUI for shadowsocks
 
 OSX / Windows / Linux
 
-![Screenshot](http://ww1.sinaimg.cn/large/4a7494e9jw1e55jz443cuj20h20gadgu.jpg)
+![Screenshot](https://raw.github.com/shadowsocks/shadowsocks-gui/master/screenshot.png)
 
-Download all-in-one
---------------------
+Download all-in-one (Recommended)
+---------------------------------
+
+Download the latest version of your OS:
 
 https://sourceforge.net/projects/shadowsocksgui/files/dist/
 
-This files are so large that I recommend you to download node-webkit yourself, then only update shadowsocks-gui every time.
-
 Download node-webkit and shadowsocks-gui seperately
------------------------------------------------------
+----------------------------------------------------
+
+Just for developers.
 
 Clone the repo and install dependencies:
 
@@ -31,7 +33,8 @@ See also: https://github.com/rogerwang/node-webkit/wiki/How-to-run-apps
 
 License
 --------
-MIT License
+
+[MIT License](https://raw.github.com/shadowsocks/shadowsocks-gui/master/LICENSE)
 
 Server and other clients
 ---------

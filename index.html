@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>shadowsocks client</title>
+    <title>Shadowsocks GUI</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <style>
         body {
@@ -33,11 +33,14 @@
                     <button class="btn dropdown-toggle right" data-toggle="dropdown">
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a tabindex="-1" href="#"><i class="icon-ok"></i> 123.123.123.123:8388</a> </li>
-                        <li><a tabindex="-1" href="#"><i class="icon-not-ok"></i> 123.123.123.123:8388</a></li>
-                        <li class="divider"></li>
-                        <li><a tabindex="-1" href="#"><i class="icon-trash"></i> Delete Current Profile</a></li>
+                    <ul id="serverIPMenu" class="dropdown-menu pull-right">
+                        <li class="server"><a tabindex="-1" href="#"><i class="icon-ok"></i> 123.123.123.123:8388</a> </li>
+                        <li class="server"><a tabindex="-1" href="#"><i class="icon-not-ok"></i> 123.123.123.123:8388</a></li>
+                        <li class="fixed insert-point divider"></li>
+                        <li class="fixed"><a id="buttonPublicServer" tabindex="-1" href="#"><i class="icon-globe"></i> Use Public Server</a></li>
+                        <li class="fixed divider"></li>
+                        <li class="fixed"><a id="buttonNewProfile" tabindex="-1" href="#"><i class="icon-plus"></i> Create A New Profile</a></li>
+                        <li class="fixed"><a id="buttonDeleteProfile" tabindex="-1" href="#"><i class="icon-trash"></i> Delete Current Profile</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,7 +55,7 @@
     <div class="control-group">
         <label class="control-label" for="inputPassword">Password</label>
         <div class="controls">
-            <input type="text" id="inputPassword" data-key="password" placeholder="Password">
+            <input type="password" id="inputPassword" data-key="password" placeholder="Password">
         </div>
     </div>
     <div class="control-group">
@@ -92,6 +95,7 @@
         <div class="controls">
             <button id="buttonSave" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
             <button id="buttonConsole" class="btn btn-info"><i class="icon-wrench icon-white"></i> Debug</button>
+            <button id="buttonAbout" class="btn"><i class="icon-info-sign"></i></button>
         </div>       
     </div>
 </div>
