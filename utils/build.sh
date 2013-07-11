@@ -5,9 +5,10 @@ if [ $# == 0 ]; then
 fi
 pushd `dirname $0`
 cd ..
-mkdir -p dist && \
-cd dist && \
-mkdir app && \
+mkdir -p dist
+cd dist
+rm -rf app
+mkdir app
 pushd app && \
 cp ../../*.js . && \
 cp -r ../../css . && \
@@ -15,7 +16,7 @@ cp -r ../../img . && \
 cp ../../*.json . && \
 cp ../../*.htm* . && \
 cp ../../*.png . && \
-cp -r node_modules . || \
+cp -r ../../node_modules . || \
 exit 1
 rm ../app.nw
 zip -r ../app.nw * && \
