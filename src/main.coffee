@@ -21,6 +21,7 @@
 gui = require 'nw.gui'
 # hack util.log
 util = require 'util'
+args = require './args'
 divWarning = $('#divWarning')
 divWarningShown = false
 util.log = (s) ->
@@ -79,6 +80,7 @@ restartServer = (config) ->
     start = ->
       try
         isRestarting = false
+        util.log 'Starting shadowsocks...'
         window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout or 600)
         addServer config.server
         $('#divError').fadeOut()
@@ -87,11 +89,12 @@ restartServer = (config) ->
         util.log e
     if window.local?
       try
-        window.local.close ->
-          start()
+        util.log 'Restarting shadowsocks'
+        window.local.close()
+        setTimeout start, 1000
       catch e
+        isRestarting = false
         util.log e
-        start()
     else
       start()
   else
