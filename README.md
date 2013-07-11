@@ -1,7 +1,7 @@
 shadowsocks-gui
 ===============
 
-node-webkit GUI for shadowsocks
+GUI for shadowsocks, powered by [shadowsocks-nodejs](https://github.com/clowwindy/shadowsocks-nodejs)
 
 OSX / Windows / Linux
 
