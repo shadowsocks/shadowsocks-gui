@@ -84,7 +84,7 @@
 
   deleteConfig = function(index) {
     var configs;
-    if (!isNaN(index) && !index === -1) {
+    if ((!isNaN(index)) && !(index === -1)) {
       configs = loadConfigs();
       configs.splice(index, 1);
       return saveConfigs(configs);

@@ -63,7 +63,7 @@ loadConfig = (index) ->
   return configs[index] or defaultConfig
       
 deleteConfig = (index) ->
-  if not isNaN(index) and not index == -1
+  if (not isNaN(index)) and not (index == -1)
     configs = loadConfigs()
     configs.splice index, 1
     saveConfigs configs
