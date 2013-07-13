@@ -19,6 +19,7 @@
       "max_width": 500,
       "max_height": 450
     },
+    "js-flags": "--expose-gc",
     "licenses": [
     {
       "type": "MIT",

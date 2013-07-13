@@ -8,18 +8,20 @@
 
   loadFromJSON = function() {
     var data, e, fs, temp;
-    fs = require('fs');
-    try {
-      data = fs.readFileSync('gui-config.json');
-      temp = JSON.parse(data.toString('utf-8'));
-      if (temp.configs) {
-        temp.configs = JSON.stringify(temp.configs);
+    if (process.platform === 'win32') {
+      fs = require('fs');
+      try {
+        data = fs.readFileSync('gui-config.json');
+        temp = JSON.parse(data.toString('utf-8'));
+        if (temp.configs) {
+          temp.configs = JSON.stringify(temp.configs);
+        }
+        localStorage = temp;
+        return util.log('reading config file');
+      } catch (_error) {
+        e = _error;
+        return util.log(e);
       }
-      localStorage = temp;
-      return util.log('reading config file');
-    } catch (_error) {
-      e = _error;
-      return util.log(e);
     }
   };
 
@@ -27,20 +29,22 @@
 
   saveToJSON = function() {
     var data, e, fs, temp;
-    fs = require('fs');
-    util.log('saving config file');
-    temp = JSON.parse(JSON.stringify(localStorage));
-    if (temp.configs) {
-      temp.configs = JSON.parse(temp.configs);
-    }
-    data = JSON.stringify(temp, null, 2);
-    try {
-      return fs.writeFileSync('gui-config.json', data, {
-        'encoding': 'utf-8'
-      });
-    } catch (_error) {
-      e = _error;
-      return util.log(e);
+    if (process.platform === 'win32') {
+      fs = require('fs');
+      util.log('saving config file');
+      temp = JSON.parse(JSON.stringify(localStorage));
+      if (temp.configs) {
+        temp.configs = JSON.parse(temp.configs);
+      }
+      data = JSON.stringify(temp, null, 2);
+      try {
+        return fs.writeFileSync('gui-config.json', data, {
+          'encoding': 'utf-8'
+        });
+      } catch (_error) {
+        e = _error;
+        return util.log(e);
+      }
     }
   };
 
