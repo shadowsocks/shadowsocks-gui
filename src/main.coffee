@@ -20,10 +20,13 @@
 
 gui = require 'nw.gui'
 # hack util.log
-util = require 'util'
-args = require './args'
+
 divWarning = $('#divWarning')
 divWarningShown = false
+serverHistory = ->
+  (localStorage['server_history'] || '').split('|')
+ 
+util = require 'util'
 util.log = (s) ->
   console.log new Date().toLocaleString() + " - #{s}"
   if not divWarningShown
@@ -31,11 +34,10 @@ util.log = (s) ->
     divWarningShown = true
   divWarning.text(s)
 
+args = require './args'
 local = require('shadowsocks')
 
-serverHistory = ->
-  (localStorage['server_history'] || '').split('|')
-  
+ 
 addServer = (serverIP) ->
   servers = (localStorage['server_history'] || '').split('|')
   servers.push serverIP

@@ -5,13 +5,15 @@
 
   gui = require('nw.gui');
 
-  util = require('util');
-
-  args = require('./args');
-
   divWarning = $('#divWarning');
 
   divWarningShown = false;
+
+  serverHistory = function() {
+    return (localStorage['server_history'] || '').split('|');
+  };
+
+  util = require('util');
 
   util.log = function(s) {
     console.log(new Date().toLocaleString() + (" - " + s));
@@ -22,11 +24,9 @@
     return divWarning.text(s);
   };
 
-  local = require('shadowsocks');
+  args = require('./args');
 
-  serverHistory = function() {
-    return (localStorage['server_history'] || '').split('|');
-  };
+  local = require('shadowsocks');
 
   addServer = function(serverIP) {
     var newServers, server, servers, _i, _len;

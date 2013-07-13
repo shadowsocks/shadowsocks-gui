@@ -1,5 +1,36 @@
-
 localStorage = window.localStorage
+util = require 'util'
+
+loadFromJSON = ->
+  # Windows users are happy to see a config file within their shadowsocks-gui folder
+  if process.platform == 'win32'
+    fs = require 'fs'
+    try
+      data = fs.readFileSync 'gui-config.json'
+      temp = JSON.parse data.toString('utf-8')
+      # make config file easier to read
+      if temp.configs
+        temp.configs = JSON.stringify(temp.configs)
+      localStorage = temp
+      util.log 'reading config file'
+    catch e
+      util.log e
+
+loadFromJSON()
+        
+saveToJSON = ->
+  if process.platform == 'win32'
+    fs = require 'fs'
+    util.log 'saving config file'
+    # make config file easier to read
+    temp = JSON.parse(JSON.stringify(localStorage))
+    if temp.configs
+      temp.configs = JSON.parse(temp.configs)
+    data = JSON.stringify(temp, null, 2)
+    try
+      fs.writeFileSync 'gui-config.json', data, 'encoding': 'utf-8'
+    catch e
+      util.log e
 
 # This is a public server
 publicConfig =
@@ -18,7 +49,11 @@ defaultConfig =
 
 
 loadConfigs = ->
-  JSON.parse(localStorage['configs'] or '[]')
+  try
+    JSON.parse(localStorage['configs'] or '[]')
+  catch e
+    util.log e
+    []
 
 allConfigs = ->
   if localStorage['configs']
@@ -34,12 +69,14 @@ allConfigs = ->
   
 saveIndex = (index) ->
   localStorage['index'] = index
+  saveToJSON()
 
 loadIndex = ->
   +localStorage['index']
  
 saveConfigs = (configs) ->
   localStorage['configs'] = JSON.stringify(configs)
+  saveToJSON()
 
 saveConfig = (index, config) ->
   if index == -1
