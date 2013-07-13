@@ -1,0 +1,4 @@
+dist
+node-webkit.app/
+node_modules/
+nwsnapshot
