@@ -13,6 +13,9 @@
         .combo .right {
             width:  34px;
         }
+        .alert {
+            margin-bottom: 10px;
+        }
     </style>
     <script src="jquery-1.9.0.min.js"></script>
     <script src="bootstrap.min.js"></script>
@@ -22,6 +25,10 @@
     Please fill in the blanks and click Save.
 </div>
 <div id="divWarning" class="alert alert-info hide">
+</div>
+<div id="divNewVersion" class="alert alert-success hide">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <span class="msg"></span>
 </div>
 <div class="form-horizontal">
     <div class="control-group">

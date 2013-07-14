@@ -49,6 +49,10 @@ do
   fi
   if [ $platform == win-ia32 ]; then
       cat nw.exe ../app.nw > shadowsocks.exe && \
+      rm nwsnapshot.exe && \
+      rm ffmpegsumo.dll && \
+      rm libEGL.dll && \
+      rm libGLESv2 && \
       rm nw.exe || \
       exit 1
   fi
@@ -62,9 +66,9 @@ do
       exit 1
   fi
   popd && \
-  tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
+  7z a -t7z shadowsocks-gui-$1-$platform.7z shadowsocks-gui-$1-$platform && \
   rm -r shadowsocks-gui-$1-$platform && \
-  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.7z frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.7z || \
   exit 1
 done
 popd

@@ -35,8 +35,16 @@ util.log = (s) ->
   divWarning.text(s)
 
 args = require './args'
-local = require('shadowsocks')
+local = require 'shadowsocks'
+update = require './update'
 
+update.checkUpdate (url, version) ->
+  divNewVersion = $('#divNewVersion')
+  span = $("<span style='cursor:pointer'>New version #{version} found, click here to download</span>")
+  span.click ->
+    gui.Shell.openExternal url
+  divNewVersion.find('.msg').append span 
+  divNewVersion.fadeIn()
  
 addServer = (serverIP) ->
   servers = (localStorage['server_history'] || '').split('|')
