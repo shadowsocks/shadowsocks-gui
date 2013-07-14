@@ -20,7 +20,7 @@
         return util.log('reading config file');
       } catch (_error) {
         e = _error;
-        return util.log(e);
+        return console.log(e);
       }
     }
   };

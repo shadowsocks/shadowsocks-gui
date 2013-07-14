@@ -14,7 +14,7 @@ loadFromJSON = ->
       localStorage = temp
       util.log 'reading config file'
     catch e
-      util.log e
+      console.log e
 
 loadFromJSON()
         

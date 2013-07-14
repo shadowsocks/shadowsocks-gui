@@ -3,3 +3,7 @@ node-webkit.app/
 node_modules/
 nwsnapshot
 gui-config.json
+*.exe
+*.dll
+*.pak
+.idea
