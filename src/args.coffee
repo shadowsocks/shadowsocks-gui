@@ -1,12 +1,14 @@
 localStorage = window.localStorage
 util = require 'util'
 
+guiconfigFilename = process.execPath + '/' + 'gui-config.json'
+
 loadFromJSON = ->
   # Windows users are happy to see a config file within their shadowsocks-gui folder
   if process.platform == 'win32'
     fs = require 'fs'
     try
-      data = fs.readFileSync 'gui-config.json'
+      data = fs.readFileSync guiconfigFilename
       temp = JSON.parse data.toString('utf-8')
       # make config file easier to read
       if temp.configs
@@ -28,7 +30,7 @@ saveToJSON = ->
       temp.configs = JSON.parse(temp.configs)
     data = JSON.stringify(temp, null, 2)
     try
-      fs.writeFileSync 'gui-config.json', data, 'encoding': 'utf-8'
+      fs.writeFileSync guiconfigFilename, data, 'encoding': 'utf-8'
     catch e
       util.log e
 
