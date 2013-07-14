@@ -1,4 +1,4 @@
-NW_VERSION=v0.6.0
+NW_VERSION=v0.6.2
 if [ $# == 0 ]; then
   echo 'usage: build.sh version'
   exit 1
