@@ -52,11 +52,12 @@ do
       rm nwsnapshot.exe && \
       rm ffmpegsumo.dll && \
       rm libEGL.dll && \
-      rm libGLESv2 && \
+      rm libGLESv2.dll && \
       rm nw.exe || \
       exit 1
   fi
   if [ $platform == osx-ia32 ]; then
+      rm nwsnapshot && \
       cp ../app.nw node-webkit.app/Contents/Resources/ && \
       cp ../../utils/Info.plist node-webkit.app/Contents/ && \
       cp ../../utils/*.icns node-webkit.app/Contents/Resources/ && \
