@@ -1,3 +1,6 @@
+0.3.0 2013-07-21
+- Update shadowsocks-nodejs to 1.4.0
+
 0.2.2 2013-07-15
 - Fix keyboard on OSX; disabled hiding Dock icon
 
