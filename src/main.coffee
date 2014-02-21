@@ -161,7 +161,7 @@ $ ->
   $('#buttonAbout').on 'click', ->
     gui.Shell.openExternal 'https://github.com/shadowsocks/shadowsocks-gui'
   
-  tray = new gui.Tray icon: 'menu_icon.png'
+  tray = new gui.Tray icon: 'menu_icon@2x.png'
   menu = new gui.Menu()
   
   tray.on 'click', ->
