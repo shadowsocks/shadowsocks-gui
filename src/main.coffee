@@ -133,7 +133,7 @@ $ ->
         try
           isRestarting = false
           util.log 'Starting shadowsocks...'
-          window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout or 600)
+          window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout or 600), '127.0.0.1'
           addServer config.server
           $('#divError').fadeOut()
           gui.Window.get().hide()

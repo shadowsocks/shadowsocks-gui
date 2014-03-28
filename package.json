@@ -6,7 +6,7 @@
     "keywords": [ "shadowsocks", "node-webkit" ],
     "single-instance": false,
     "dependencies": {
-        "shadowsocks": "1.4.1"
+        "shadowsocks": "1.4.4"
     },
     "window": {
       "icon": "icon.png",
