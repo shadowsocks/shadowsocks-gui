@@ -3,7 +3,8 @@
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $(function() {
-    var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, isRestarting, load, local, menu, publicConfig, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util;
+    var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, isRestarting, load, local, menu, os, publicConfig, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util, win;
+    os = require('os');
     gui = require('nw.gui');
     divWarning = $('#divWarning');
     divWarningShown = false;
@@ -192,7 +193,7 @@
       type: 'normal',
       label: 'Quit',
       click: function() {
-        return gui.Window.get().close();
+        return gui.Window.get().close(true);
       }
     });
     show.add;
@@ -200,8 +201,16 @@
     menu.append(quit);
     tray.menu = menu;
     window.tray = tray;
-    gui.Window.get().on('minimize', function() {
-      return gui.Window.get().hide();
+    win = gui.Window.get();
+    win.on('minimize', function() {
+      return this.hide();
+    });
+    win.on('close', function(quit) {
+      if (os.platform() === 'darwin' && !quit) {
+        return this.hide();
+      } else {
+        return this.close(true);
+      }
     });
     reloadServerList();
     return load(true);

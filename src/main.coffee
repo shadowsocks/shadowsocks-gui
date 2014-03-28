@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 $ ->
+  os = require 'os'
   gui = require 'nw.gui'
   # hack util.log
   
@@ -44,7 +45,7 @@ $ ->
     span = $("<span style='cursor:pointer'>New version #{version} found, click here to download</span>")
     span.click ->
       gui.Shell.openExternal url
-    divNewVersion.find('.msg').append span 
+    divNewVersion.find('.msg').append span
     divNewVersion.fadeIn()
    
   addServer = (serverIP) ->
@@ -177,15 +178,24 @@ $ ->
     type: 'normal'
     label: 'Quit'
     click: ->
-      gui.Window.get().close()
+      gui.Window.get().close(true)
   
   show.add
   menu.append show
   menu.append quit
   tray.menu = menu
   window.tray = tray
-  gui.Window.get().on 'minimize', ->
-    gui.Window.get().hide()
-  
+
+  win = gui.Window.get()
+
+  win.on 'minimize', ->
+    this.hide()
+
+  win.on 'close', (quit) ->
+    if os.platform() == 'darwin' and not quit
+        this.hide()
+    else
+      this.close true
+
   reloadServerList()
   load true
