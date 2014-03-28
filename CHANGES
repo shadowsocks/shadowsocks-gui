@@ -1,4 +1,7 @@
-0.3.1 2013-07-31
+0.4.1 2014-03-28
+- Close button should hide the window instead of quit on OS X
+
+0.4 2013-07-31
 - Update shadowsocks-nodejs to 1.4.1
 
 0.3.0 2013-07-21
