@@ -7,17 +7,15 @@ OSX / Windows / Linux
 
 ![Screenshot](https://raw.github.com/shadowsocks/shadowsocks-gui/master/screenshot.png)
 
-Download all-in-one (Recommended)
----------------------------------
+Download
+--------
 
 Download the latest version of your OS:
 
 https://sourceforge.net/projects/shadowsocksgui/files/dist/
 
-Download node-webkit and shadowsocks-gui seperately
-----------------------------------------------------
-
-Just for developers.
+Develop
+-------
 
 Clone the repo and install dependencies:
 
