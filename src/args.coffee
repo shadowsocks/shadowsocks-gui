@@ -2,7 +2,7 @@ localStorage = window.localStorage
 util = require 'util'
 
 fs = require 'fs'
-guiconfigFilename = fs.realpathSync(process.execPath + '/..') + '/gui-config.json'
+guiconfigFilename = __dirname + '/gui-config.json'
 
 loadFromJSON = ->
   # Windows users are happy to see a config file within their shadowsocks-gui folder
@@ -41,6 +41,8 @@ publicConfig =
   password: '$#HAL9000!'
   method: 'aes-256-cfb'
   timeout: 600
+  localProxy: '172.17.18.84'
+  localPort:8080
   
 defaultConfig =
   server_port: 8388
