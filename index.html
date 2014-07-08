@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Shadowsocks GUI</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <style>
@@ -22,7 +23,7 @@
 </head>
 <body>
 <div id="divError" class="alert alert-error hide">
-    Please fill in the blanks and click Save.
+    请填写空白并保存.
 </div>
 <div id="divWarning" class="alert alert-info hide">
 </div>
@@ -30,9 +31,10 @@
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <span class="msg"></span>
 </div>
+<div id="url"></div>
 <div class="form-horizontal">
     <div class="control-group">
-        <label class="control-label" for="inputServerIP">Server IP</label>
+        <label class="control-label" for="inputServerIP">服务器 IP</label>
         <div class="controls">
             <div class="input-append combo">
                 <input class="left" type="text" id="inputServerIP" data-key="server" autocomplete="off" data-provide="typeahead" placeholder="Server IP">
@@ -53,24 +55,28 @@
             </div>
         </div>
     </div>
+
     <div class="control-group">
-        <label class="control-label" for="inputServerPort">Server Port</label>
+        <label class="control-label" for="inputServerPort">服务器端口</label>
         <div class="controls">
             <input type="text" id="inputServerPort" data-key="server_port" placeholder="Server Port">
         </div>
     </div>
+
     <div class="control-group">
-        <label class="control-label" for="inputPassword">Password</label>
+        <label class="control-label" for="inputPassword">密码</label>
         <div class="controls">
             <input type="password" id="inputPassword" data-key="password" placeholder="Password">
         </div>
     </div>
+
     <div class="control-group">
         <label class="control-label" for="inputLocalPort">SOCKS 5 Proxy Port</label>
         <div class="controls">
             <input type="text" id="inputLocalPort" data-key="local_port" placeholder="Local Port" value="1080">
         </div>
     </div>
+
     <div class="control-group">
         <label class="control-label" for="selectMethod">Encryption Method</label>
         <div class="controls">
@@ -92,15 +98,30 @@
             </select>
         </div>
     </div>
+
     <div class="control-group">
-        <label class="control-label" for="inputTimeout">Timeout in Second</label>
+        <label class="control-label" for="inputTimeout">超时分钟数</label>
         <div class="controls">
-            <input type="number" id="inputTimeout" data-key="timeout" placeholder="Timeout" value="600" min=10>
+            <input type="number" id="inputTimeout" data-key="timeout" placeholder="Timeout" value="600">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="clientproxy">本地代理地址</label>
+        <div class="controls">
+            <input type="text" id="clientproxy" placeholder="http://" data-key="client_proxy"   value="172.17.18.84">
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="clientport">本地代理端口</label>
+        <div class="controls">
+            <input type="number"  id="clientport"  placeholder="8080" data-key="client_port"   value="8080">
         </div>
     </div>
     <div class="control-group">
         <div class="controls">
-            <button id="buttonSave" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
+            <button id="buttonSave" class="btn btn-primary"><i class="icon-ok icon-white"></i> 保存</button>
             <button id="buttonConsole" class="btn btn-info"><i class="icon-wrench icon-white"></i> Debug</button>
             <button id="buttonAbout" class="btn"><i class="icon-info-sign"></i></button>
         </div>       

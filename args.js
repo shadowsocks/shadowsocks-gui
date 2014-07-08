@@ -8,7 +8,7 @@
 
   fs = require('fs');
 
-  guiconfigFilename = fs.realpathSync(process.execPath + '/..') + '/gui-config.json';
+  guiconfigFilename = __dirname + '/gui-config.json';
 
   loadFromJSON = function() {
     var data, e, temp;
@@ -56,7 +56,9 @@
     local_port: 1080,
     password: '$#HAL9000!',
     method: 'aes-256-cfb',
-    timeout: 600
+    timeout: 600,
+    client_proxy: '',
+    client_port: 8080
   };
 
   defaultConfig = {
