@@ -41,8 +41,8 @@ publicConfig =
   password: '$#HAL9000!'
   method: 'aes-256-cfb'
   timeout: 600
-  localProxy: '172.17.18.84'
-  localPort:8080
+  client_proxy: ''
+  client_port: 8080
   
 defaultConfig =
   server_port: 8388
