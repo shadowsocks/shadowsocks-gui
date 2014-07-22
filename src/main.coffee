@@ -179,9 +179,15 @@ $ ->
     label: 'Quit'
     click: ->
       gui.Window.get().close(true)
-  
-  show.add
+
+  hide = new gui.MenuItem
+    type: 'normal'
+    label: 'Hide'
+    click: ->
+      gui.Window.get().hide()
+
   menu.append show
+  menu.append hide
   menu.append quit
   tray.menu = menu
   window.tray = tray
