@@ -1,3 +1,6 @@
+0.5.0 2014-09-09
+- Add RC4-MD5 encryption
+
 0.4.1 2014-03-28
 - Close button should hide the window instead of quit on OS X
 - Listen to 127.0.0.1 instead of 0.0.0.0

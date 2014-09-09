@@ -3,7 +3,7 @@
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $(function() {
-    var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, isRestarting, load, local, menu, os, publicConfig, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util, win;
+    var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, hide, isRestarting, load, local, menu, os, publicConfig, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util, win;
     os = require('os');
     gui = require('nw.gui');
     divWarning = $('#divWarning');
@@ -196,8 +196,15 @@
         return gui.Window.get().close(true);
       }
     });
-    show.add;
+    hide = new gui.MenuItem({
+      type: 'normal',
+      label: 'Hide',
+      click: function() {
+        return gui.Window.get().hide();
+      }
+    });
     menu.append(show);
+    menu.append(hide);
     menu.append(quit);
     tray.menu = menu;
     window.tray = tray;
