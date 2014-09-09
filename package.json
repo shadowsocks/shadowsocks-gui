@@ -12,12 +12,12 @@
       "icon": "icon.png",
       "toolbar": false,
       "width": 500,
-      "height": 450,
+      "height": 520,
       "position": "mouse",
       "min_width": 500,
-      "min_height": 450,
+      "min_height": 500,
       "max_width": 500,
-      "max_height": 450
+      "max_height": 550
     },
     "js-flags": "--expose-gc",
     "licenses": [
