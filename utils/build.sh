@@ -16,6 +16,7 @@ cp -r ../../img . && \
 cp ../../*.json . && \
 cp ../../*.htm* . && \
 cp ../../*.png . && \
+cp -r ../../fonts . && \
 cp -r ../../node_modules . || \
 exit 1
 rm ../app.nw
@@ -25,7 +26,7 @@ rm -rf app || \
 exit 1
 for platform in linux-x64 win-ia32
 do
-  if [ -f shadowsocks-gui-$1-$platform.tar.gz ]; then
+  if [ -f shadowsocks-gui-$1-$platform.tar.xz ]; then
     continue
   fi
   if [ ! -f node-webkit-$NW_VERSION-$platform.zip ] ; then
@@ -72,9 +73,9 @@ do
       exit 1
   fi
   popd && \
-  tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
+  tar Jcf shadowsocks-gui-$1-$platform.tar.xz shadowsocks-gui-$1-$platform && \
   rm -r shadowsocks-gui-$1-$platform && \
-  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.xz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.xz || \
   exit 1
 done
 popd
