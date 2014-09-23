@@ -6,7 +6,6 @@
     var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, hide, isRestarting, load, local, menu, os, publicConfig, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util, win;
     os = require('os');
     gui = require('nw.gui');
-    gui.Window.get().showDevTools();
     divWarning = $('#divWarning');
     divWarningShown = false;
     serverHistory = function() {
