@@ -1,4 +1,4 @@
-NW_VERSION=v0.6.2
+NW_VERSION=v0.8.6
 if [ $# == 0 ]; then
   echo 'usage: build.sh version'
   exit 1
@@ -23,17 +23,15 @@ zip -r ../app.nw * && \
 popd && \
 rm -rf app || \
 exit 1
-for platform in osx-ia32 win-ia32
+for platform in linux-x64 win-ia32
 do
   if [ -f shadowsocks-gui-$1-$platform.7z ]; then
     continue
   fi
   if [ ! -f node-webkit-$NW_VERSION-$platform.zip ] ; then
     if [ ! -f node-webkit-$NW_VERSION-$platform.tar.gz ] ; then
-      axel https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip || \
-      curl https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip > node-webkit-$NW_VERSION-$platform.zip || \
-      axel https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz || \
-      curl https://s3.amazonaws.com/node-webkit/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz > node-webkit-$NW_VERSION-$platform.tar.gz || \
+      axel http://dl.node-webkit.org/$NW_VERSION/node-webkit-$NW_VERSION-$platform.zip || \
+      axel http://dl.node-webkit.org/$NW_VERSION/node-webkit-$NW_VERSION-$platform.tar.gz || \
       exit 1
     fi
   fi
@@ -64,6 +62,12 @@ do
       /usr/libexec/PlistBuddy -c "Set CFBundleVersion $1" node-webkit.app/Contents/Info.plist  && \
       /usr/libexec/PlistBuddy -c "Set CFBundleShortVersionString $1" node-webkit.app/Contents/Info.plist  && \
       mv node-webkit.app shadowsocks.app || \
+      exit 1
+  fi
+  if [ $platform == linux-x64 ]; then
+      rm nwsnapshot && \
+      cp ../app.nw . && \
+      rm libffmpegsumo.so || \
       exit 1
   fi
   popd && \
