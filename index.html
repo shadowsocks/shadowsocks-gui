@@ -6,6 +6,7 @@
     <style>
         body {
             margin: 10px;
+            overflow-x: hidden;
         }
         .alert {
             margin-bottom: 10px;
@@ -22,13 +23,17 @@
         .my_hide {
             display: none;
         }
+        .alert {
+            padding: 2px 10px 2px 10px;
+            font-size: 0.9em;
+        }
     </style>
     <script src="jquery-1.9.0.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="bootstrap3-typeahead.min.js"></script>
 </head>
 <body>
-<div id="divError" class="alert alert-error my_hide">
+<div id="divError" class="alert alert-danger my_hide">
     Please fill in the blanks and click Save.
 </div>
 <div id="divWarning" class="alert alert-info my_hide">

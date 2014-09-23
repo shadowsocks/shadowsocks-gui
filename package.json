@@ -11,13 +11,13 @@
     "window": {
       "icon": "icon.png",
       "toolbar": false,
-      "width": 350,
-      "height": 420,
+      "width": 360,
+      "height": 430,
       "position": "mouse",
-      "min_width": 350,
-      "min_height": 420,
-      "max_width": 350,
-      "max_height": 420
+      "min_width": 360,
+      "min_height": 430,
+      "max_width": 360,
+      "max_height": 430
     },
     "js-flags": "--expose-gc",
     "licenses": [

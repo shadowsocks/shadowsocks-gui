@@ -25,7 +25,7 @@ rm -rf app || \
 exit 1
 for platform in linux-x64 win-ia32
 do
-  if [ -f shadowsocks-gui-$1-$platform.7z ]; then
+  if [ -f shadowsocks-gui-$1-$platform.tar.gz ]; then
     continue
   fi
   if [ ! -f node-webkit-$NW_VERSION-$platform.zip ] ; then
@@ -67,13 +67,14 @@ do
   if [ $platform == linux-x64 ]; then
       rm nwsnapshot && \
       cp ../app.nw . && \
+      cp ../../utils/linux/start.sh . && \
       rm libffmpegsumo.so || \
       exit 1
   fi
   popd && \
-  7z a -t7z shadowsocks-gui-$1-$platform.7z shadowsocks-gui-$1-$platform && \
+  tar zcf shadowsocks-gui-$1-$platform.tar.gz shadowsocks-gui-$1-$platform && \
   rm -r shadowsocks-gui-$1-$platform && \
-  rsync --progress -e ssh shadowsocks-gui-$1-$platform.7z frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.7z || \
+  rsync --progress -e ssh shadowsocks-gui-$1-$platform.tar.gz frs.sourceforge.net:/home/frs/project/shadowsocksgui/dist/shadowsocks-gui-$1-$platform.tar.gz || \
   exit 1
 done
 popd
