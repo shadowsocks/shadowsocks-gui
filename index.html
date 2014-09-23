@@ -7,74 +7,83 @@
         body {
             margin: 10px;
         }
-        .combo .left {
-            width: 173px;
-        }
-        .combo .right {
-            width:  34px;
-        }
         .alert {
             margin-bottom: 10px;
+        }
+        .col-sm-2 {
+            width: 25%;
+        }
+        .col-sm-10 {
+            width: 75%;
+        }
+        .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+            float: left;
+        }
+        .my_hide {
+            display: none;
         }
     </style>
     <script src="jquery-1.9.0.min.js"></script>
     <script src="bootstrap.min.js"></script>
+    <script src="bootstrap3-typeahead.min.js"></script>
 </head>
 <body>
-<div id="divError" class="alert alert-error hide">
+<div id="divError" class="alert alert-error my_hide">
     Please fill in the blanks and click Save.
 </div>
-<div id="divWarning" class="alert alert-info hide">
+<div id="divWarning" class="alert alert-info my_hide">
 </div>
-<div id="divNewVersion" class="alert alert-success hide">
+<div id="divNewVersion" class="alert alert-success my_hide">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <span class="msg"></span>
 </div>
-<div class="form-horizontal">
-    <div class="control-group">
-        <label class="control-label" for="inputServerIP">Server IP</label>
-        <div class="controls">
+<div class="form-horizontal small">
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right" for="inputServerIP">Server IP</label>
+        <div class="controls col-sm-10">
             <div class="input-append combo">
-                <input class="left" type="text" id="inputServerIP" data-key="server" autocomplete="off" data-provide="typeahead" placeholder="Server IP">
-                <div class="btn-group">
-                    <button class="btn dropdown-toggle right" data-toggle="dropdown">
-                        <span class="caret"></span>
-                    </button>
-                    <ul id="serverIPMenu" class="dropdown-menu pull-right">
-                        <li class="server"><a tabindex="-1" href="#"><i class="icon-ok"></i> 123.123.123.123:8388</a> </li>
-                        <li class="server"><a tabindex="-1" href="#"><i class="icon-not-ok"></i> 123.123.123.123:8388</a></li>
-                        <li class="fixed insert-point divider"></li>
-                        <li class="fixed"><a id="buttonPublicServer" tabindex="-1" href="#"><i class="icon-globe"></i> Use Public Server</a></li>
-                        <li class="fixed divider"></li>
-                        <li class="fixed"><a id="buttonNewProfile" tabindex="-1" href="#"><i class="icon-plus"></i> Create A New Profile</a></li>
-                        <li class="fixed"><a id="buttonDeleteProfile" tabindex="-1" href="#"><i class="icon-trash"></i> Delete Current Profile</a></li>
-                    </ul>
+                <div class="input-group">
+                    <input class="form-control input-sm" type="text" id="inputServerIP" data-key="server" autocomplete="off" data-provide="typeahead" placeholder="Server IP">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="serverIPMenu" class="dropdown-menu pull-right">
+                            <li class="server"><a tabindex="-1" href="#"><i class="icon-ok"></i> 123.123.123.123:8388</a> </li>
+                            <li class="server"><a tabindex="-1" href="#"><i class="icon-not-ok"></i> 123.123.123.123:8388</a></li>
+                            <li class="fixed insert-point divider"></li>
+                            <li class="fixed"><a id="buttonPublicServer" tabindex="-1" href="#"><i class="icon-globe"></i> Use Public Server</a></li>
+                            <li class="fixed divider"></li>
+                            <li class="fixed"><a id="buttonNewProfile" tabindex="-1" href="#"><i class="icon-plus"></i> Create A New Profile</a></li>
+                            <li class="fixed"><a id="buttonDeleteProfile" tabindex="-1" href="#"><i class="icon-trash"></i> Delete Current Profile</a></li>
+                        </ul>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="inputServerPort">Server Port</label>
-        <div class="controls">
-            <input type="text" id="inputServerPort" data-key="server_port" placeholder="Server Port">
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right" for="inputServerPort">Server Port</label>
+        <div class="controls col-sm-10">
+            <input type="text" class="form-control input-sm" id="inputServerPort" data-key="server_port" placeholder="Server Port">
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Password</label>
-        <div class="controls">
-            <input type="password" id="inputPassword" data-key="password" placeholder="Password">
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right" for="inputPassword">Password</label>
+        <div class="controls col-sm-10">
+            <input type="password" class="form-control input-sm" id="inputPassword" data-key="password" placeholder="Password">
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="inputLocalPort">SOCKS 5 Proxy Port</label>
-        <div class="controls">
-            <input type="text" id="inputLocalPort" data-key="local_port" placeholder="Local Port" value="1080">
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right" for="inputLocalPort">SOCKS 5 Proxy Port</label>
+        <div class="controls col-sm-10">
+            <input type="text" class="form-control input-sm" id="inputLocalPort" data-key="local_port" placeholder="Local Port" value="1080">
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="selectMethod">Encryption Method</label>
-        <div class="controls">
-            <select id="selectMethod" data-key="method">
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right" for="selectMethod">Encryption Method</label>
+        <div class="controls col-sm-10">
+            <select id="selectMethod" class="form-control input-sm" data-key="method">
                 <option value="aes-256-cfb" selected>AES-256-CFB</option>
                 <option value="aes-192-cfb">AES-192-CFB</option>
                 <option value="aes-128-cfb">AES-128-CFB</option>
@@ -93,18 +102,19 @@
             </select>
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="inputTimeout">Timeout in Second</label>
-        <div class="controls">
-            <input type="number" id="inputTimeout" data-key="timeout" placeholder="Timeout" value="600" min=10>
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right" for="inputTimeout">Timeout in Second</label>
+        <div class="controls col-sm-10">
+            <input type="number" class="form-control input-sm" id="inputTimeout" data-key="timeout" placeholder="Timeout" value="600" min=10>
         </div>
     </div>
-    <div class="control-group">
-        <div class="controls">
-            <button id="buttonSave" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
-            <button id="buttonConsole" class="btn btn-info"><i class="icon-wrench icon-white"></i> Debug</button>
-            <button id="buttonAbout" class="btn"><i class="icon-info-sign"></i></button>
-        </div>       
+    <div class="form-group">
+        <label class="control-label col-sm-2 text-right"></label>
+        <div class="controls col-sm-10 text-right">
+            <button id="buttonSave" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
+            <button id="buttonConsole" class="btn btn-info"><i class="glyphicon glyphicon-wrench"></i> Debug</button>
+            <button id="buttonAbout" class="btn btn-default"><i class="glyphicon glyphicon-info-sign"></i></button>
+        </div>
     </div>
 </div>
 <script src="main.js"></script>

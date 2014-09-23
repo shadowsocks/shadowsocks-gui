@@ -21,6 +21,7 @@
 $ ->
   os = require 'os'
   gui = require 'nw.gui'
+  gui.Window.get().showDevTools()
   # hack util.log
   
   divWarning = $('#divWarning')
