@@ -3,7 +3,7 @@ shadowsocks-gui
 
 GUI for shadowsocks, powered by [shadowsocks-nodejs](https://github.com/clowwindy/shadowsocks-nodejs)
 
-OSX / Windows
+OSX / Windows / Linux
 
 ![Screenshot](https://raw.github.com/shadowsocks/shadowsocks-gui/master/screenshot.png)
 
