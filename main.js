@@ -3,7 +3,7 @@
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   $(function() {
-    var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, hide, isRestarting, load, local, menu, os, publicConfig, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util, win;
+    var addConfig, addServer, args, chooseServer, deleteConfig, divWarning, divWarningShown, gui, hide, isRestarting, load, local, menu, os, publicConfig, qrcode, quit, reloadServerList, restartServer, save, serverHistory, show, tray, update, util, win;
     os = require('os');
     gui = require('nw.gui');
     divWarning = $('#divWarning');
@@ -165,6 +165,9 @@
         return $('#divError').fadeIn();
       }
     };
+    qrcode = function(method, password, hostname, port) {
+      return "ss://" + (btoa("" + method + ":" + password + "@" + hostname + ":" + port));
+    };
     $('#buttonSave').on('click', save);
     $('#buttonNewProfile').on('click', addConfig);
     $('#buttonDeleteProfile').on('click', deleteConfig);
@@ -174,6 +177,9 @@
     });
     $('#buttonAbout').on('click', function() {
       return gui.Shell.openExternal('https://github.com/shadowsocks/shadowsocks-gui');
+    });
+    $("#buttonQr").on('click', function() {
+      return window.qrCode.makeCode(qrcode($('#selectMethod').val(), $('#inputPassword').val(), $('#inputServerIP').val(), $('#inputServerPort').val()));
     });
     tray = new gui.Tray({
       icon: 'menu_icon@2x.png'

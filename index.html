@@ -31,6 +31,7 @@
     <script src="jquery-1.9.0.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="bootstrap3-typeahead.min.js"></script>
+    <script src="qrcode.min.js"></script>
 </head>
 <body>
 <div id="divError" class="alert alert-danger my_hide">
@@ -114,9 +115,35 @@
     <div class="form-group">
         <label class="control-label col-sm-2 text-right"></label>
         <div class="controls col-sm-10 text-right">
-            <button id="buttonSave" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
-            <button id="buttonConsole" class="btn btn-info"><i class="glyphicon glyphicon-wrench"></i> Debug</button>
-            <button id="buttonAbout" class="btn btn-default"><i class="glyphicon glyphicon-info-sign"></i></button>
+            <div class="btn-group">
+                <button id="buttonSave" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Save</button>
+                <button id="buttonQr" class="btn btn-default" title="QR Code" data-toggle="modal" data-target="#qrModal"><i class="glyphicon glyphicon-qrcode"></i></button>
+                <button id="buttonConsole" class="btn btn-default" title="Debug"><i class="glyphicon glyphicon-wrench"></i></button>
+                <button id="buttonAbout" class="btn btn-default" title="About"><i class="glyphicon glyphicon-info-sign"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Scan with ShadowSocks mobile</h4>
+            </div>
+            <div class="modal-body">
+                <div id="divQRCode"></div>
+                <script type="text/javascript">
+                    window.qrCode = new QRCode(document.getElementById("divQRCode"), {
+                            text: "test",
+                            width: 300,
+                            height: 300,
+                            colorDark : "#000000",
+                            colorLight : "#ffffff",
+                            correctLevel : QRCode.CorrectLevel.H
+                        });
+                </script>
+            </div>
         </div>
     </div>
 </div>

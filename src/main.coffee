@@ -152,6 +152,9 @@ $ ->
         start()
     else
       $('#divError').fadeIn()
+
+  qrcode = (method, password, hostname, port) ->
+    "ss://#{btoa("#{method}:#{password}@#{hostname}:#{port}")}"
   
   $('#buttonSave').on 'click', save
   $('#buttonNewProfile').on 'click', addConfig
@@ -161,6 +164,13 @@ $ ->
     gui.Window.get().showDevTools()
   $('#buttonAbout').on 'click', ->
     gui.Shell.openExternal 'https://github.com/shadowsocks/shadowsocks-gui'
+  $("#buttonQr").on 'click', ->
+    window.qrCode.makeCode(
+      qrcode($('#selectMethod').val(),
+             $('#inputPassword').val(),
+             $('#inputServerIP').val(),
+             $('#inputServerPort').val()),
+    )
   
   tray = new gui.Tray icon: 'menu_icon@2x.png'
   menu = new gui.Menu()
