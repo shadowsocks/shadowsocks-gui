@@ -2,7 +2,7 @@
     "name": "shadowsocks-gui",
     "main": "index.html",
     "description": "shadowsocks client with GUI",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "keywords": [ "shadowsocks", "node-webkit" ],
     "single-instance": false,
     "dependencies": {
