@@ -2,11 +2,11 @@
     "name": "shadowsocks-gui",
     "main": "index.html",
     "description": "shadowsocks client with GUI",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "keywords": [ "shadowsocks", "node-webkit" ],
     "single-instance": false,
     "dependencies": {
-        "shadowsocks": "1.5.0"
+        "shadowsocks": "1.5.2"
     },
     "window": {
       "icon": "icon.png",
