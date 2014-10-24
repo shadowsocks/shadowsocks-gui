@@ -137,7 +137,7 @@
           try {
             isRestarting = false;
             util.log('Starting shadowsocks...');
-            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout || 600), '127.0.0.1');
+            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout || 600), config.local || '127.0.0.1');
             addServer(config.server);
             $('#divError').fadeOut();
             return gui.Window.get().hide();
