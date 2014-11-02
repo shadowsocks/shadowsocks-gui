@@ -12,16 +12,21 @@
             margin-bottom: 10px;
         }
         .col-sm-2 {
-            width: 25%;
+            width: 30%;
+            line-height: 30px;
         }
         .col-sm-10 {
-            width: 75%;
+            width: 70%;
+            line-height: 30px;
         }
         .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
             float: left;
         }
         .my_hide {
             display: none;
+        }
+        input[type=checkbox] {
+            margin-top: 8px;
         }
         .alert {
             padding: 2px 10px 2px 10px;
@@ -79,13 +84,13 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2 text-right" for="inputLocalPort">SOCKS 5 Proxy Port</label>
+        <label class="control-label col-sm-2 text-right" for="inputLocalPort">Local Port</label>
         <div class="controls col-sm-10">
             <input type="text" class="form-control input-sm" id="inputLocalPort" data-key="local_port" placeholder="Local Port" value="1080">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2 text-right" for="selectMethod">Encryption Method</label>
+        <label class="control-label col-sm-2 text-right" for="selectMethod">Encryption</label>
         <div class="controls col-sm-10">
             <select id="selectMethod" class="form-control input-sm" data-key="method">
                 <option value="aes-256-cfb" selected>AES-256-CFB</option>
@@ -107,9 +112,13 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2 text-right" for="inputTimeout">Timeout in Second</label>
+        <label class="control-label col-sm-2 text-right"> </label>
         <div class="controls col-sm-10">
-            <input type="number" class="form-control input-sm" id="inputTimeout" data-key="timeout" placeholder="Timeout" value="600" min=10>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" data-key="share"> Share over LAN
+                </label>
+            </div>
         </div>
     </div>
     <div class="form-group">

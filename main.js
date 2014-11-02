@@ -99,7 +99,11 @@
       $('input,select').each(function() {
         var key, val;
         key = $(this).attr('data-key');
-        val = $(this).val();
+        if (this.type === 'checkbox') {
+          val = this.checked;
+        } else {
+          val = $(this).val();
+        }
         return config[key] = val;
       });
       index = args.saveConfig(args.loadIndex(), config);
@@ -116,7 +120,11 @@
         var key, val;
         key = $(this).attr('data-key');
         val = config[key] || '';
-        $(this).val(val);
+        if (this.type === 'checkbox') {
+          this.checked = val;
+        } else {
+          $(this).val(val);
+        }
         return config[key] = this.value;
       });
       if (restart) {
@@ -126,7 +134,7 @@
     isRestarting = false;
     restartServer = function(config) {
       var e, start;
-      if (config.server && +config.server_port && config.password && +config.local_port && config.method && +config.timeout) {
+      if (config.server && +config.server_port && config.password && +config.local_port && config.method) {
         if (isRestarting) {
           util.log("Already restarting");
           return;
@@ -137,7 +145,7 @@
           try {
             isRestarting = false;
             util.log('Starting shadowsocks...');
-            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * (config.timeout || 600), '127.0.0.1');
+            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * 600, config.share ? '::' : '127.0.0.1');
             addServer(config.server);
             $('#divError').fadeOut();
             return gui.Window.get().hide();

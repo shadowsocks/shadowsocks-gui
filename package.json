@@ -2,7 +2,7 @@
     "name": "shadowsocks-gui",
     "main": "index.html",
     "description": "shadowsocks client with GUI",
-    "version": "0.6.2",
+    "version": "0.6.3",
     "keywords": [ "shadowsocks", "node-webkit" ],
     "single-instance": false,
     "dependencies": {
@@ -12,12 +12,12 @@
       "icon": "icon.png",
       "toolbar": false,
       "width": 360,
-      "height": 430,
+      "height": 420,
       "position": "mouse",
       "min_width": 360,
-      "min_height": 430,
+      "min_height": 420,
       "max_width": 360,
-      "max_height": 430
+      "max_height": 420
     },
     "js-flags": "--expose-gc",
     "licenses": [
