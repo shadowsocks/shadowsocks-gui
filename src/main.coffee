@@ -121,9 +121,10 @@ $ ->
       val = config[key] or ''
       if this.type == 'checkbox'
         this.checked = val
+        config[key] = this.checked
       else
         $(this).val(val)
-      config[key] = this.value
+        config[key] = this.value
     if restart
       restartServer config
     
@@ -139,7 +140,8 @@ $ ->
         try
           isRestarting = false
           util.log 'Starting shadowsocks...'
-          window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * 600, if config.share then '::' else '127.0.0.1'
+          console.log config
+          window.local = local.createServer config.server, config.server_port, config.local_port, config.password, config.method, 1000 * 600, if config.share then '0.0.0.0' else '127.0.0.1'
           addServer config.server
           $('#divError').fadeOut()
           gui.Window.get().hide()

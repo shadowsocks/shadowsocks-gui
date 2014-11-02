@@ -122,10 +122,11 @@
         val = config[key] || '';
         if (this.type === 'checkbox') {
           this.checked = val;
+          return config[key] = this.checked;
         } else {
           $(this).val(val);
+          return config[key] = this.value;
         }
-        return config[key] = this.value;
       });
       if (restart) {
         return restartServer(config);
@@ -145,7 +146,8 @@
           try {
             isRestarting = false;
             util.log('Starting shadowsocks...');
-            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * 600, config.share ? '::' : '127.0.0.1');
+            console.log(config);
+            window.local = local.createServer(config.server, config.server_port, config.local_port, config.password, config.method, 1000 * 600, config.share ? '0.0.0.0' : '127.0.0.1');
             addServer(config.server);
             $('#divError').fadeOut();
             return gui.Window.get().hide();
