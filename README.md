@@ -3,14 +3,18 @@ shadowsocks-gui
 
 GUI for shadowsocks, powered by [shadowsocks-nodejs](https://github.com/clowwindy/shadowsocks-nodejs)
 
-OSX / Windows / Linux
+Windows: please upgrade to [Shadowsocks for Windows](https://github.com/clowwindy/shadowsocks-csharp)
+
+OS X: please upgrade to [ShadowsocksX](https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help)
+
+For Linux users, you can still use shadowsocks-gui.
 
 ![Screenshot](https://raw.github.com/shadowsocks/shadowsocks-gui/master/screenshot.png)
 
 Download
 --------
 
-Download the latest version of your OS:
+Download the latest version:
 
 https://sourceforge.net/projects/shadowsocksgui/files/dist/
 
